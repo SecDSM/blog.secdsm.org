@@ -4,6 +4,7 @@ title:  "CornCon 7 Crypto Challenge CTF"
 date:   2021-09-18 00:00:00 +0000
 categories: [ctf, ctf writeup]
 author: SecDSM Team
+excerpt_separator: <!--more-->
 ---
 
 The annual CornCon conference was held Sept 10-11, 2021 and the Crypto Challenge CTF featured challenges that could all 
@@ -13,7 +14,9 @@ remotely.
 There were a total of 10 challenges presented, which followed the CornCon 7 theme of "Cyber Things", a pun/spin off of 
 the popular Netflix series, Stranger Things.
 
+We were able to complete the board and secured a first place finish.
 
+<!--more-->
 # Challenges
 ## Ghost of CornCon past
 ### Points: 100  
