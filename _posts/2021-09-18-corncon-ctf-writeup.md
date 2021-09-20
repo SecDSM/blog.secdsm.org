@@ -1,10 +1,7 @@
 ---
-layout: post
-title:  "CornCon 7 Crypto Challenge CTF"
-date:   2021-09-18 00:00:00 +0000
+title:  "CornCon 7 Crypto Challenge CTF Writeups"
 categories: [ctf, ctf writeup]
-author: SecDSM Team
-excerpt_separator: <!--more-->
+tags: [CornCon, CTF]
 ---
 
 The annual CornCon conference was held Sept 10-11, 2021 and the Crypto Challenge CTF featured challenges that could all 
@@ -40,13 +37,13 @@ Finally, I headed over to twitter and looking for tweets from the 2018 timeframe
 [a tweet from @MrJeffMan](https://twitter.com/MrJeffMan/status/1021762902334816259?s=20) which contained a subtitle 
 `Harry Hack and the Coblet of Cyber` which was the solution
 
-![Tweet Image](/assets/images/2021-09-18-corncon-ctf-writeup/tweet1.png)
+![Tweet Image]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/tweet1.png)
 
 ### Side Track
 I actually found a challenge coin from this year for sale on 
 [ebay](https://www.ebay.com/itm/Cyber-Security-Coin-Harry-Hacker-and-The-Goblet-of-Cyber-Security-Challenge-Coin-/284143933163)
 
-![Ebay Image](/assets/images/2021-09-18-corncon-ctf-writeup/ebay.png)
+![Ebay Image]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/ebay.png)
 
 
 
@@ -67,7 +64,7 @@ None
 Solve the picture
 ```
 ### Provided Files
-[Image]()
+![corncon_1.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_1.png)
 ### Solution
 
 ## 10th level Ranger
@@ -77,7 +74,7 @@ Solve the picture
 Solve the picture
 ```
 ### Provided Files
-[Image]()
+![corncon_3.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_3.png)
 ### Solution
 
 ## Squiggly-wiggly
@@ -87,7 +84,7 @@ Solve the picture
 Solve the picture
 ```
 ### Provided Files
-[Image]()
+![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2.png)
 ### Solution
 
 ## Don't Cross the Streams
@@ -97,7 +94,7 @@ Solve the picture
 Solve the picture
 ```
 ### Provided Files
-[Image]()
+![corncon_9.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_9.png)
 ### Solution
 
 ## Extra Life
@@ -107,8 +104,8 @@ Solve the picture
 Solve me
 ```
 ### Provided Files
-[Grid.png]()
-[Solveme.txt]()
+[Grid.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/grid.png)
+[Solveme.txt]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/solveme.txt)
 ### Solution
 ## Lab Homework
 ### Points: 400
@@ -121,6 +118,7 @@ Dashboard: 54.80.132.176
 ### Provided Files
 None
 ### Solution
+
 ## Typo Squatting
 ### Points: 500
 ### Challenge
@@ -128,7 +126,7 @@ None
 What is in my traffic?
 ```
 ### Provided Files
-[pcap]()
+[pcap]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_5.pcapng)
 ### Solution
 ## Don't Blink
 ### Points: 600
@@ -137,7 +135,7 @@ What is in my traffic?
 Solve the animated pic
 ```
 ### Provided Files
-[corncon_7.gif]()
+[corncon_7.gif]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_7.gif)
 ### Solution
 
 ## What's your Vector, Victor?
@@ -149,8 +147,8 @@ Our sensor network detected an anomalous power surge at 1500. We were able to ca
 Please use the data to help us calculate where the power spike occurred at 0330.
 ```
 ### Provided Files
-[Hawkins_Map.jpg]()
-[hawkins_stats.csv]()
+[Hawkins_Map.jpg]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/Hawkings_Map.jpg)
+[hawkins_stats.csv]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/hawkins_stats.csv)
 ### Solution
 
 ## Junior Panda Swim Team
@@ -161,7 +159,7 @@ Solve the text
 
 ```
 ### Provided Files
-[corncon_4.txt]()
+[corncon_4.txt]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_4.txt)
 ### Solution
 
 ## Influencer
@@ -173,7 +171,7 @@ I was driving through town making a video for my YouTube channel and I heard som
 Can you help me figure out what it was? Until then, I'm just going to post the video without any sound.
 ```
 ### Provided Files
-[corncon_8.mp4]()
+[corncon_8.mp4]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_8.mp4)
 ### Soultion
 
 ## Town Square
@@ -185,5 +183,5 @@ We recovered this file from the remains of the lab, but it appears incomplete.
 Maybe you can fix it and help us solve the mystery.
 ```
 ### Provided Files
-[invasion.js]()
+[invasion.js]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/invasion.js)
 
