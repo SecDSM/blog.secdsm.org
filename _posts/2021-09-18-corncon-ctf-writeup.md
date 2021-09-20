@@ -2,7 +2,17 @@
 title:  "CornCon 7 Crypto Challenge CTF Writeups"
 categories: [ctf, ctf writeup]
 tags: [CornCon, CTF]
+toc: false
 ---
+
+<section class="page__content e-content" itemprop="text">
+  <aside class="sidebar__right sticky">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-{{ page.toc_icon | default: 'file-alt' }}"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: "On this page" }}</h4></header>
+      {% include toc.html sanitize=true html=content h_min=1 h_max=2 class="toc__menu" skip_no_ids=true %}
+    </nav>
+  </aside>
+</section>
 
 The annual CornCon conference was held Sept 10-11, 2021 and the Crypto Challenge CTF featured challenges that could all 
 be done in a remote fashion, allowing for a great opportunity for SecDSM members to participate in the conference 
