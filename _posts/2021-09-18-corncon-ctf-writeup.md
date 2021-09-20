@@ -2,15 +2,9 @@
 title:  "CornCon 7 Crypto Challenge CTF Writeups"
 categories: [ctf, ctf writeup]
 tags: [CornCon, CTF]
-toc: false
+toc_h_min: 1
+toc_h_max: 2
 ---
-
-<aside class="sidebar__right sticky">
-<nav class="toc">
-  <header><h4 class="nav__title"><i class="fas fa-{{ page.toc_icon | default: 'file-alt' }}"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: "On this page" }}</h4></header>
-  {% include toc.html sanitize=true html=content h_min=1 h_max=2 class="toc__menu" skip_no_ids=true %}
-</nav>
-</aside>
 
 The annual CornCon conference was held Sept 10-11, 2021 and the Crypto Challenge CTF featured challenges that could all 
 be done in a remote fashion, allowing for a great opportunity for SecDSM members to participate in the conference 
@@ -24,19 +18,15 @@ We were able to complete the board and secured a first place finish.
 <!--more-->
 # Challenges
 ## Ghost of CornCon past
-### Points: 100  
-### Challenge 
-```
+```text
 Themes are important. So is remembering where you came from.
 What was the slogan / subtitle for Children of CornCon IV?
 ```
-### Solution
-#### Context
+
 Knowing that "Children of CornCon" is the title for CornCon's `kids` conference, this was more of an issue of figuring 
 out which year was CornCon 4 and finding some references to the kids track.  CornCon being well known for their movie 
 based themes each year, I assumed the subtitle would be in some marketing material from the year. 
 
-#### Finding the Answer
 So, being that 2021 was CornCon 7, CornCon 4 would have been 2018, so I headed over the 
 [2018 Kids Schedule](https://corncon.net/2018.corncon.kids.agenda.html) on the official CornCon website, and came up 
 empty handed.   
@@ -47,8 +37,7 @@ Finally, I headed over to twitter and looking for tweets from the 2018 timeframe
 
 ![Tweet Image]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/tweet1.png)
 
-### Side Track
-I actually found a challenge coin from this year for sale on 
+As a sitenote - I actually found a challenge coin from this year for sale on 
 [ebay](https://www.ebay.com/itm/Cyber-Security-Coin-Harry-Hacker-and-The-Goblet-of-Cyber-Security-Challenge-Coin-/284143933163)
 
 ![Ebay Image]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/ebay.png)
@@ -56,76 +45,65 @@ I actually found a challenge coin from this year for sale on
 
 
 ## Upsidedown
-### Points: 100  
-### Challenge
 ```
 H4sIANgcOmEA_w3Ux66CQBTH4ScikVZcDkVEei-bCa04CNIGhKe_d3tW_5x8-T2ZVQNWWdqDAuBBB17KKSEA4ObZHmMYgm9bWPawhC93nliBPaIt9FeNVuvuKL6M5Eu8WUW6vx0KMNWVw3r6YpLAIrZc394ed8t9T8o-ZWWbwpFUTH_runeZ3HLACou3zlLovT9wI4oheZ46VrUTfOwbxPLl78asCtKiVee8XqyOidJzFhFSfVBXU6WJpAenqW2jXfYiGpG_-GIO8v3UC86KOTQJSXk0HyCe8af3uusB7VL_tikaECQ14v0RIuLwVVeJAtdCpPWY2-kn7crwYfbPiazfXKin-ooGU5a4xJnXUsmIavDSxNsRpRSESymnaAwBKmAs5EudX5Eed3nGu9NIRrzceVK3uYCA0laFi_27-Zz-Tl4rdIvTbVb1kCH0ZcOza7esIjWGLay_erZOe6sSLr4TVwyNr1OVzlbfkL4vtcCLwf6WG3sh8McY6Z-w__-5TggLvMhdR0FFbJRoR49BZtaw-95YN6G00kVAqdwrYKRx_ZIZZiBCbWqa_kVzbCg4zpv9P2TlwS-_3-VFL7W694YuoSs_bGvEkTn1C60r8aDBjsr6hgvEG5Fq7gzPh5-XWRKJ-Vl3AQZ9fbz7Jnr2JnqzVPGdWPE-eQk-Mwna5IMIvxd49KQ1QYwN_vdwRyWNv9s1DBkN-GWSXYq0OE7xg5-G5w9-RejXCiDqezKckvyO1RMSc9U1Lt1HuVpwrvTM1bvhBTm_B1SGNxQL3k9v7O_oCOL0rSQrmULGyYkGh8nyr7Dn4_W3oY1wCr_T_DvsHKWxzmdASGrgiCPe1F1oKSpQonsvpd9x3R9Gr4wynAwEV4ieQ5iItiXa_GaGxv_mnH3Rxy17Ycb6NKpIwf3Fm-VboEf_a3cVyPlukQsyBloKG8Sk7fAeszF9Up84G3jz8IKVhspkOcp3uCtEYJ04mnF0r44O9EvD4jjQaDmuRqyMouPRyr88REYtvl_WaJrDjMCwqLv9kFoh1IolGyJwWRQ5lub9iSYy0MBP-hz5IB5wu2wzpGmSeLAN12Y0O6CAIrlZgYM3D_rSg0VJpjG84dWZmXae-Cpge5dEbQdtcyREotG1p8E5sbWSdW6FKWHt94o6eo6cR0fLwmVADzoqR22zZcN2fzNtl22LcJE8ynX2HvboLGfxPkqYU8LQn-X9PSdabgqGnZs1zZvazTXEVPgvAm9UH4D3UOi2eoRRYZI_FWtdiI458gUDAnwr2XxgUG-9PJYxzSa60dwiKqgWTzWss-d5nRJIZS-xq7QBYZYG9vg6otnOsPgPLbfKcN_xQzpbWS8t58k876qw6oIuybXvnln4AM4h3seC1-z_wAHwBylgTbwvBQAA
 ```
-### Provided Files
-None
-### Solution
 
 ## Dubbel
-### Points: 200  
-### Challenge
 ```
 Solve the picture
 ```
-### Provided Files
 ![corncon_1.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_1.png)
-### Solution
+
 
 ## 10th level Ranger
-### Points: 200
-### Challenge
 ```
 Solve the picture
 ```
-### Provided Files
+
 ![corncon_3.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_3.png)
-### Solution
+
 
 ## Squiggly-wiggly
-### Points: 300
-### Challenge
 ```
 Solve the picture
 ```
-### Provided Files
+
 ![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2.png)
-### Solution
+
 
 ## Don't Cross the Streams
-### Points: 400
-### Challenge
 ```
 Solve the picture
 ```
 ### Provided Files
 ![corncon_9.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_9.png)
-### Solution
 
 ## Extra Life
-### Points: 400
+
 ### Challenge
 ```
 Solve me
 ```
-### Provided Files
-[Grid.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/grid.png)
-[Solveme.txt]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/solveme.txt)
-### Solution
+For Extra Life - there were two provided files
+First was in image
+
+![Grid.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/grid.png)
+
+Followed by a [text file]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/solveme.txt) 
+containing a single line
+
+```
+ULULUL LDDLLDDLL LDDLLLDDL RURRUR,  DLDL LUULUL LLLL   LUUUULU'LUUL   DDLLLLDD LLDLDD LRDD LUUULUU UURURURU RRRUURR   DRRDDDD UULLL,  LLDDLL DRDR LLLULLU RDRR   DDRR DLLDDL RRRRRDD LLLDDDL   ULLUUUU LUDDU   UURRR LD RUURURRR RDDRRRR URDRRRDDUU   DDRDDRD UUULR   LLLLULU UUUR DRDRRDDR RDDRDDD UURUL URRURRR?  UULU LUULLUUU URRRURRU   ULLUUULU DDLL RRRDDDDD DLLLDDDDLL   UUUULLU UUUURRRU   RDR DUUDL UURRRR DDRDDRD DRDDLD LRRRDDDLLDD   UULUUUL URUU   UUUL RDDR RDR DRRR   UULU DURR RUR   DLR DRDRDDD LDDDLD DLDLLLDUUU   LUDUD LLULLUL URLRRLL   RUUUL LDLLDDLDL.  LLULD ULU   LLDDDL LDDDDLLL RRRRUU   LDDDD RR RDRDRRR   UUR LDLLDLDDL RDRRDRR URRURRR LULUUUU LLLLD RURRRRUU RUURUUUR URRRRRUU RUUU UDUDL,  DDRRLRLDLD URRUDD URRUR   LLULLU URRRRRUU DRDRDDDR LULU ULULUUU LLDDDLLD LLUUL UUUULLU RDDUUR URUURUUR.  LDLD LURUU RRDDDDR   ULULUUU ULLUULU   LUUU RDDR LUUUUUL RUUU   L UULU LDDLDLLLD RRDRRDR DLDR'LLLDDLDD   RDR LLLUU   DRRDDDRLLLD DRUR DRUR RUUURU   ULULLLL UUUR   I   DRRR LULLUUUU UUULULU UURURRUU RRURUR   DDDDRDR RDRR'DDULU   DDL DDLDLDLLL RDDDDL DLDDRD DLLDLD   RD LUU,  UUUL LUULULUU UURRRRRU LURUU   LUUU DDLDLLLLD DLDDLDDLLL   LLL UURDUDRD DDLRDD'ULUU   RDRDR DDLL RDRRDDDD URURRRUR.  UURRR LD LUU   RRD LUUUR L RURU RRRR DRDRRRR   RDDDDRD ULLUL   RDDRDRDR LU DLDRDLRDRL LLLULLU RUR ULUULUU.  UUUUULL RRUURUUU   LLLUUUL RRD LL RRURU,  ULUUULLU RRRURUUR'UULLLU DDLLDD   UURRR DRDR RDR URRRLULLU RDDRDRRD   LDLDD DUL.  UL DRDDRDRD   RRUUR LD RRRURUUR   LDLDLDLLD LLLUUU RRDDDRD   LDULULDL DLDDLL DLLL LRUU   DDDRRDD UDUDL   ULURU DDDDR RDRR DUL   DRR UUURURRU LLLD   RUURR UULLLUUU RRRRUURU   LDUDUUD DRRR LU DRRRDRR LRU   DRDRD DLLDDD RR LRD DLDDLLDL   DDRDD LLLLUU   UUUULLU URRUUUUR   UDRR RDDDD DRRRRDR   RUU LLDD LLDLLDLD RRRDUUDRDU   DRR DRLDDD RDDRRDD   RRUUR UL LLLDDLDLDD   UUUULLL RDDRDDD DDRDDRDR URDDURRR DDLLDLLD   DRDDD DUUDULD.
+```
+
 ## Lab Homework
-### Points: 400
-### Challenge
 ```
 One of the sensors on the Hawkins National Laboratory’s public facing dashboard is displaying some weird unreadable messages. Can you take a look?
 
 Dashboard: 54.80.132.176
 ```
-### Provided Files
-None
-### Solution
+
 
 ## Typo Squatting
 ### Points: 500
