@@ -2,7 +2,8 @@
 title:  "CornCon 7 Crypto Challenge CTF Writeups"
 categories: [ctf, ctf writeup]
 tags: [CornCon, CTF]
-toc_levels: 1..2
+kramdown:
+    toc_levels: 1..2
 ---
 
 The annual CornCon conference was held Sept 10-11, 2021 and the Crypto Challenge CTF featured challenges that could all 
