@@ -69,7 +69,20 @@ different "operations" into cyberchef.
 
 ![upsidedown_2]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/upsidedown_3.png)
 
+Here is the receipe in JSON format that can be loaded directly into cyberchef
 
+```json
+[
+  { "op": "Label",
+    "args": ["start"] },
+  { "op": "From Base64",
+    "args": ["A-Za-z0-9-_", true] },
+  { "op": "Gunzip",
+    "args": [] },
+  { "op": "Jump",
+    "args": ["start", 21] }
+]
+```
 
 
 
