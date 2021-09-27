@@ -172,7 +172,7 @@ tool - [quipquip](https://www.quipqiup.com/) and solved in about a second
 ABC DAEBDAB DFB DIFBJC CKCELMINBJ
 ```
 
-![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2_solved.png)
+![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2_solve.png)
 
 ## Don't Cross the Streams
 ```
