@@ -87,27 +87,60 @@ Here is the receipe in JSON format that can be loaded directly into cyberchef
 
 
 ## Dubbel
+### Clue
 ```
 Solve the picture
 ```
+
 ![corncon_1.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_1.png)
+
+### Solution
+Dubbel presented itself as a [substitution cipher](https://en.wikipedia.org/wiki/Substitution_cipher), and a great one 
+to get started in recognizing pattens and applying context to discover the answer. 
+
+The first observation made was that the image displays a total of seven positions and only four unique "shapes" where 
+the shapes in position 1, 2 and 4 (from the left, going to the right) are repeated at the end of the image in positions
+5, 6, and 7.
+
+Understanding the name of the conference as context, it can be observed that `CornCon` is also seven positions, with 
+only for unique "shapes" (english letters in this case), where the letters in positions 1, 2, and 4 are repeated in 
+positions 5, 6, and 7. 
+
+Attempting `CornCon` as the flag, was accepted as the correct answer.
 
 
 ## 10th level Ranger
+### Clue
 ```
 Solve the picture
 ```
 
 ![corncon_3.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_3.png)
 
+### Solution
+10th level Ranger was a surprising difficult challenge to solve.  Having a relatively low point value, after spending a 
+about 30 minutes attempting different cipher methods (ROT13, other substitution cipher, keyed ciphers) it was decided 
+to move along.   
+
+Finally, during the SecDSM Friday Night hangout, the group reviewed this challenge.  The solution was rather simple and 
+displayed the entire time the image was being viewed. 
+
+Looking at every other letter relieved the solution of `MIND FLAYER` - a clear reference to the Stranger Things theme.
+
+![corncon_3.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_3_solve.png)
+
+A great challenge that really showed how frustrating a rather simple challenge can be when focusing on complex 
+solutions without attempting more simple "visual" solutions.
 
 ## Squiggly-wiggly
+### Clue
 ```
 Solve the picture
 ```
 
 ![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2.png)
 
+### Solution
 
 ## Don't Cross the Streams
 ```
