@@ -103,7 +103,7 @@ the shapes in position 1, 2 and 4 (from the left, going to the right) are repeat
 5, 6, and 7.
 
 Understanding the name of the conference as context, it can be observed that `CornCon` is also seven positions, with 
-only for unique "shapes" (english letters in this case), where the letters in positions 1, 2, and 4 are repeated in 
+only for unique "shapes" (English letters in this case), where the letters in positions 1, 2, and 4 are repeated in 
 positions 5, 6, and 7. 
 
 Attempting `CornCon` as the flag, was accepted as the correct answer.
@@ -147,12 +147,13 @@ constant, with no variation.  Looking at the last shape of each column also reve
 distinct from the "start" shape.  This reminded me a bit of 
 ["magic bytes"](https://en.wikipedia.org/wiki/File_format#Magic_number) and "footer/trailer" bytes. 
 
-Working under the assumption these were "start" and "end" shapes, I began to identify the unique shapes in the image. 
-Creating a grid on the image itself helped in identifying the unique shapes where the shapes were "connected". 
+Working under the assumption these were "start" and "end" shapes, focus was placed on identifing the unique shapes in 
+the image.  Creating a grid on the image itself helped in identifying the unique shapes where the shapes were 
+"connected". 
 
 ![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2_grid.png)
 
-After creating the grid, a manual key was created and english letters were assigned to each unique shape.
+After creating the grid, a manual key was created and English letters were assigned to each unique shape.
 ```text
 A   D   D   D   C
 B   A   F   I   K
@@ -202,11 +203,11 @@ ULULUL LDDLLDDLL LDDLLLDDL RURRUR,  DLDL LUULUL LLLL   LUUUULU'LUUL   DDLLLLDD L
 ```
 
 ### Solution
-Being familiar with how old cheat codes, such as the [Konami Code](https://en.wikipedia.org/wiki/Konami_Code) were 
-shared, along with a large dot in the middle of the provided grid provided a quick understanding of how to solve the 
+Being familiar with how old cheat codes, such as the [Konami Code](https://en.wikipedia.org/wiki/Konami_Code), were 
+shared along with a large dot in the middle of the provided grid provided a quick understanding of how to solve the 
 challenge.
 
-Each letter in a space seperated "word" represents a single "instruction" (quick table below, once the final instruction is 
+Each letter in a space seperated "word" represents a single "instruction" (quick table below), once the final instruction is 
 hit, this represents a single letter of the word.  Each word is double space seperated.
 
 |letter|instruction|
@@ -237,7 +238,7 @@ Look, all I'm saying is, what harm is there in asking? The harm in asking is tha
 
 In lining up the punctuation, everything seemed correct, but attempted submissions of this quote did not work....hmmm
 
-The quote and the entire original screen were lined up, matching on all the punctuation to see if there were any parts 
+The quote and the entire original clue were lined up, matching on all the punctuation to see if there were any parts 
 that did not make sense.  
 
 ```
@@ -245,7 +246,7 @@ ULULUL LDDLLDDLL LDDLLLDDL RURRUR,  DLDL LUULUL LLLL   LUUUULU'LUUL   DDLLLLDD L
 L      o         o         k     ,  a    l      l      I      'm      s        a      y    i       n        g         i       s    ,  w       h   a       t      h    a      r       m         i       s       t     h  e        r       e            i       n       a       s    k        i       n     g      ?  T    h        e          h        a    r        m            i       n          a   s     k      i       n       g            i       s      t    h    a   t      T    o    m     w   i       l      l            s     a       y         n     o        .  W     e     a      s        k        f     o  r         f   o         r       g       i       v     e        n        e        s    s    ,  n          o      t       p      e        r        m    i       s        s     i       o      n       .  A    n     d         i       f         t    h    i       s      s t    o         r       y   's          a   s       g           o    o    d        a       s      I   t    h        i       n        k        i       t   's       g   o         n      n      a        b  e  ,  t    h        e        n       T    o         m            w   o        n     't      c     a    r        e       .  I     n   fact, he'll thank us. Or the old lady is nuts and the story blows up in our face and Tom fires us.
 ```
 
-The error became appearent in this process around this point.
+The error became apparent in this process around this point.
 ```
 RDRDR DDLL RDRRDDDD URURRRUR.  UURRR LD LUU   RRD LUUUR L RURU R
 c     a    r        e       .  I     n   fact, he'll thank us. O
