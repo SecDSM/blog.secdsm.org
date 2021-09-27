@@ -181,9 +181,11 @@ Solve the picture
 ### Provided Files
 ![corncon_9.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_9.png)
 
-## Extra Life
+### Solution
+TODO
 
-### Challenge
+## Extra Life
+### Clue
 ```
 Solve me
 ```
@@ -199,36 +201,97 @@ containing a single line
 ULULUL LDDLLDDLL LDDLLLDDL RURRUR,  DLDL LUULUL LLLL   LUUUULU'LUUL   DDLLLLDD LLDLDD LRDD LUUULUU UURURURU RRRUURR   DRRDDDD UULLL,  LLDDLL DRDR LLLULLU RDRR   DDRR DLLDDL RRRRRDD LLLDDDL   ULLUUUU LUDDU   UURRR LD RUURURRR RDDRRRR URDRRRDDUU   DDRDDRD UUULR   LLLLULU UUUR DRDRRDDR RDDRDDD UURUL URRURRR?  UULU LUULLUUU URRRURRU   ULLUUULU DDLL RRRDDDDD DLLLDDDDLL   UUUULLU UUUURRRU   RDR DUUDL UURRRR DDRDDRD DRDDLD LRRRDDDLLDD   UULUUUL URUU   UUUL RDDR RDR DRRR   UULU DURR RUR   DLR DRDRDDD LDDDLD DLDLLLDUUU   LUDUD LLULLUL URLRRLL   RUUUL LDLLDDLDL.  LLULD ULU   LLDDDL LDDDDLLL RRRRUU   LDDDD RR RDRDRRR   UUR LDLLDLDDL RDRRDRR URRURRR LULUUUU LLLLD RURRRRUU RUURUUUR URRRRRUU RUUU UDUDL,  DDRRLRLDLD URRUDD URRUR   LLULLU URRRRRUU DRDRDDDR LULU ULULUUU LLDDDLLD LLUUL UUUULLU RDDUUR URUURUUR.  LDLD LURUU RRDDDDR   ULULUUU ULLUULU   LUUU RDDR LUUUUUL RUUU   L UULU LDDLDLLLD RRDRRDR DLDR'LLLDDLDD   RDR LLLUU   DRRDDDRLLLD DRUR DRUR RUUURU   ULULLLL UUUR   I   DRRR LULLUUUU UUULULU UURURRUU RRURUR   DDDDRDR RDRR'DDULU   DDL DDLDLDLLL RDDDDL DLDDRD DLLDLD   RD LUU,  UUUL LUULULUU UURRRRRU LURUU   LUUU DDLDLLLLD DLDDLDDLLL   LLL UURDUDRD DDLRDD'ULUU   RDRDR DDLL RDRRDDDD URURRRUR.  UURRR LD LUU   RRD LUUUR L RURU RRRR DRDRRRR   RDDDDRD ULLUL   RDDRDRDR LU DLDRDLRDRL LLLULLU RUR ULUULUU.  UUUUULL RRUURUUU   LLLUUUL RRD LL RRURU,  ULUUULLU RRRURUUR'UULLLU DDLLDD   UURRR DRDR RDR URRRLULLU RDDRDRRD   LDLDD DUL.  UL DRDDRDRD   RRUUR LD RRRURUUR   LDLDLDLLD LLLUUU RRDDDRD   LDULULDL DLDDLL DLLL LRUU   DDDRRDD UDUDL   ULURU DDDDR RDRR DUL   DRR UUURURRU LLLD   RUURR UULLLUUU RRRRUURU   LDUDUUD DRRR LU DRRRDRR LRU   DRDRD DLLDDD RR LRD DLDDLLDL   DDRDD LLLLUU   UUUULLU URRUUUUR   UDRR RDDDD DRRRRDR   RUU LLDD LLDLLDLD RRRDUUDRDU   DRR DRLDDD RDDRRDD   RRUUR UL LLLDDLDLDD   UUUULLL RDDRDDD DDRDDRDR URDDURRR DDLLDLLD   DRDDD DUUDULD.
 ```
 
+### Solution
+Being familiar with how old cheat codes, such as the [Konami Code](https://en.wikipedia.org/wiki/Konami_Code) were 
+shared, along with a large dot in the middle of the provided grid provided a quick understanding of how to solve the 
+challenge.
+
+Each letter in a space seperated "word" represents a single "instruction" (quick table below, once the final instruction is 
+hit, this represents a single letter of the word.  Each word is double space seperated.
+
+|letter|instruction|
+|------|-----------|
+|U|Up|  
+|L|Left|  
+|D|Down|
+|R|Right|
+
+As an example, the below gif walks through the first few words of this challenge. 
+
+![extra_life_prcess.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/extra_life_process.gif)
+
+There were two ways to solve this, manually or writing a small script/program to run through the "commands". 
+
+During the actual CTF, the option to complete this challenge manually was selected, and being hackers, shortcuts were 
+taken, but eventually the slow road was taken for a subset of the commands.  
+
+To facilitate completing the challenge manually, the grid was recreated in LibreOffice Calc and using the arrow keys on 
+the keyboard to find the correct letter.  A quick pattern appeared and a DuckDuckGo search allowed us to fall down a 
+rabbit hole. 
+
+The shortcut attempted was to google the phrase that was appearing after the first few words were completed.  It turned 
+out to be a quote from [Stranger Things - Season 3 episode 02](https://8flix.com/assets/transcripts/s/tt4574334/Stranger-Things-episode-script-transcript-season-3-02-Chapter-Two-The-Mall-Rats.pdf)
+```
+Look, all I'm saying is, what harm is there in asking? The harm in asking is that Tom will say no. We ask for forgiveness, not permission. And if this story's as good as I think it's gonna be, then Tom won't care. In fact, he'll thank us. Or the old lady is nuts and the story blows up in our face and Tom fires us.
+```
+
+In lining up the punctuation, everything seemed correct, but attempted submissions of this quote did not work....hmmm
+
+The quote and the entire original screen were lined up, matching on all the punctuation to see if there were any parts 
+that did not make sense.  
+
+```
+ULULUL LDDLLDDLL LDDLLLDDL RURRUR,  DLDL LUULUL LLLL   LUUUULU'LUUL   DDLLLLDD LLDLDD LRDD LUUULUU UURURURU RRRUURR   DRRDDDD UULLL,  LLDDLL DRDR LLLULLU RDRR   DDRR DLLDDL RRRRRDD LLLDDDL   ULLUUUU LUDDU   UURRR LD RUURURRR RDDRRRR URDRRRDDUU   DDRDDRD UUULR   LLLLULU UUUR DRDRRDDR RDDRDDD UURUL URRURRR?  UULU LUULLUUU URRRURRU   ULLUUULU DDLL RRRDDDDD DLLLDDDDLL   UUUULLU UUUURRRU   RDR DUUDL UURRRR DDRDDRD DRDDLD LRRRDDDLLDD   UULUUUL URUU   UUUL RDDR RDR DRRR   UULU DURR RUR   DLR DRDRDDD LDDDLD DLDLLLDUUU   LUDUD LLULLUL URLRRLL   RUUUL LDLLDDLDL.  LLULD ULU   LLDDDL LDDDDLLL RRRRUU   LDDDD RR RDRDRRR   UUR LDLLDLDDL RDRRDRR URRURRR LULUUUU LLLLD RURRRRUU RUURUUUR URRRRRUU RUUU UDUDL,  DDRRLRLDLD URRUDD URRUR   LLULLU URRRRRUU DRDRDDDR LULU ULULUUU LLDDDLLD LLUUL UUUULLU RDDUUR URUURUUR.  LDLD LURUU RRDDDDR   ULULUUU ULLUULU   LUUU RDDR LUUUUUL RUUU   L UULU LDDLDLLLD RRDRRDR DLDR'LLLDDLDD   RDR LLLUU   DRRDDDRLLLD DRUR DRUR RUUURU   ULULLLL UUUR   I   DRRR LULLUUUU UUULULU UURURRUU RRURUR   DDDDRDR RDRR'DDULU   DDL DDLDLDLLL RDDDDL DLDDRD DLLDLD   RD LUU,  UUUL LUULULUU UURRRRRU LURUU   LUUU DDLDLLLLD DLDDLDDLLL   LLL UURDUDRD DDLRDD'ULUU   RDRDR DDLL RDRRDDDD URURRRUR.  UURRR LD LUU   RRD LUUUR L RURU RRRR DRDRRRR   RDDDDRD ULLUL   RDDRDRDR LU DLDRDLRDRL LLLULLU RUR ULUULUU.  UUUUULL RRUURUUU   LLLUUUL RRD LL RRURU,  ULUUULLU RRRURUUR'UULLLU DDLLDD   UURRR DRDR RDR URRRLULLU RDDRDRRD   LDLDD DUL.  UL DRDDRDRD   RRUUR LD RRRURUUR   LDLDLDLLD LLLUUU RRDDDRD   LDULULDL DLDDLL DLLL LRUU   DDDRRDD UDUDL   ULURU DDDDR RDRR DUL   DRR UUURURRU LLLD   RUURR UULLLUUU RRRRUURU   LDUDUUD DRRR LU DRRRDRR LRU   DRDRD DLLDDD RR LRD DLDDLLDL   DDRDD LLLLUU   UUUULLU URRUUUUR   UDRR RDDDD DRRRRDR   RUU LLDD LLDLLDLD RRRDUUDRDU   DRR DRLDDD RDDRRDD   RRUUR UL LLLDDLDLDD   UUUULLL RDDRDDD DDRDDRDR URDDURRR DDLLDLLD   DRDDD DUUDULD.
+L      o         o         k     ,  a    l      l      I      'm      s        a      y    i       n        g         i       s    ,  w       h   a       t      h    a      r       m         i       s       t     h  e        r       e            i       n       a       s    k        i       n     g      ?  T    h        e          h        a    r        m            i       n          a   s     k      i       n       g            i       s      t    h    a   t      T    o    m     w   i       l      l            s     a       y         n     o        .  W     e     a      s        k        f     o  r         f   o         r       g       i       v     e        n        e        s    s    ,  n          o      t       p      e        r        m    i       s        s     i       o      n       .  A    n     d         i       f         t    h    i       s      s t    o         r       y   's          a   s       g           o    o    d        a       s      I   t    h        i       n        k        i       t   's       g   o         n      n      a        b  e  ,  t    h        e        n       T    o         m            w   o        n     't      c     a    r        e       .  I     n   fact, he'll thank us. Or the old lady is nuts and the story blows up in our face and Tom fires us.
+```
+
+The error became appearent in this process around this point.
+```
+RDRDR DDLL RDRRDDDD URURRRUR.  UURRR LD LUU   RRD LUUUR L RURU R
+c     a    r        e       .  I     n   fact, he'll thank us. O
+```
+
+As determined by the double space, after the sentence ending with "care.", a three-letter word is expected, however 
+the quote only has a two-letter word.  As such, back to manual decoding of the commands. 
+
+```
+UURRR LD LUU   RRD LUUUR L RURU RRRR DRDRRRR   RDDDDRD ULLUL   RDDRDRDR LU DLDRDLRDRL LLLULLU RUR ULUULUU.
+the answer is konami.
+```
+
+Submitting the flag of `konami` indicated a correct answer.
+
 ## Lab Homework
 ```
 One of the sensors on the Hawkins National Laboratory’s public facing dashboard is displaying some weird unreadable messages. Can you take a look?
 
 Dashboard: 54.80.132.176
 ```
-
+### Solution
+TODO
 
 ## Typo Squatting
-### Points: 500
-### Challenge
+### Clue
 ```
 What is in my traffic?
 ```
 ### Provided Files
 [pcap]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_5.pcapng)
 ### Solution
+TODO
+
 ## Don't Blink
-### Points: 600
-### Challenge
+### Clue
 ```
 Solve the animated pic
 ```
 ### Provided Files
 [corncon_7.gif]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_7.gif)
 ### Solution
+TODO
 
 ## What's your Vector, Victor?
-### Points: 800
-### Challenge
+### Clue
 ```
 Our sensor network detected an anomalous power surge at 1500. We were able to calculate the source to a location just behind Hawkins Library.
 
@@ -238,10 +301,10 @@ Please use the data to help us calculate where the power spike occurred at 0330.
 [Hawkins_Map.jpg]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/Hawkings_Map.jpg)
 [hawkins_stats.csv]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/hawkins_stats.csv)
 ### Solution
+TODO 
 
 ## Junior Panda Swim Team
-### Points: 900
-### Challenge
+### Clue
 ```
 Solve the text
 
@@ -249,9 +312,9 @@ Solve the text
 ### Provided Files
 [corncon_4.txt]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_4.txt)
 ### Solution
+TODO
 
 ## Influencer
-### Points: 1000
 ### Challenge
 ```
 I was driving through town making a video for my YouTube channel and I heard something wierd come across the radio...
@@ -260,11 +323,11 @@ Can you help me figure out what it was? Until then, I'm just going to post the v
 ```
 ### Provided Files
 [corncon_8.mp4]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_8.mp4)
-### Soultion
+### Solution
+TODO
 
 ## Town Square
-### Points: 1200
-### Challenge
+### Clue
 ```
 We recovered this file from the remains of the lab, but it appears incomplete.
 
@@ -273,3 +336,5 @@ Maybe you can fix it and help us solve the mystery.
 ### Provided Files
 [invasion.js]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/invasion.js)
 
+### Solution
+TODO
