@@ -141,6 +141,38 @@ Solve the picture
 ![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2.png)
 
 ### Solution
+Squiggly-wiggly presents itself as an image, with 5 columns of variable length, reminding me of the "Matrix" screen 
+effect of text letters falling from the top of the screen.  When looking at the first shape of each column they are 
+constant, with no variation.  Looking at the last shape of each column also reveals each ending with the same shape, 
+distinct from the "start" shape.  This reminded me a bit of 
+["magic bytes"](https://en.wikipedia.org/wiki/File_format#Magic_number) and "footer/trailer" bytes. 
+
+Working under the assumption these were "start" and "end" shapes, I began to identify the unique shapes in the image. 
+Creating a grid on the image itself helped in identifying the unique shapes where the shapes were "connected". 
+
+![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2_grid.png)
+
+After creating the grid, a manual key was created and english letters were assigned to each unique shape.
+```text
+A   D   D   D   C
+B   A   F   I   K
+C   E   B   F   C
+    B       B   E
+    D       J   L
+    A       C   M
+    B           I
+                N
+                B
+                J
+```
+ 
+After each shape was assigned a letter, they were arranged by column into a single row, and throw into a great online 
+tool - [quipquip](https://www.quipqiup.com/) and solved in about a second 
+```
+ABC DAEBDAB DFB DIFBJC CKCELMINBJ
+```
+
+![corncon_2.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/corncon_2_solved.png)
 
 ## Don't Cross the Streams
 ```
