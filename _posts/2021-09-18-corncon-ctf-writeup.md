@@ -38,7 +38,7 @@ Finally, I headed over to twitter and looking for tweets from the 2018 timeframe
 
 ![Tweet Image]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/tweet1.png)
 
-As a sitenote - I actually found a challenge coin from this year for sale on 
+As a sidenote - I actually found a challenge coin from this year for sale on 
 [ebay](https://www.ebay.com/itm/Cyber-Security-Coin-Harry-Hacker-and-The-Goblet-of-Cyber-Security-Challenge-Coin-/284143933163)
 
 ![Ebay Image]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/ebay.png)
@@ -102,11 +102,11 @@ The first observation made was that the image displays a total of seven position
 the shapes in position 1, 2 and 4 (from the left, going to the right) are repeated at the end of the image in positions
 5, 6, and 7.
 
-Understanding the name of the conference as context, it can be observed that `CornCon` is also seven positions, with 
-only for unique "shapes" (English letters in this case), where the letters in positions 1, 2, and 4 are repeated in 
-positions 5, 6, and 7. 
+Understanding the name of the conference as context, it can be observed that `Corncon` is also seven positions, with 
+only for unique "shapes" (English letters in this case), where the letters in positions 2 and 4 are repeated in 
+positions 6, and 7. 
 
-Attempting `CornCon` as the flag, was accepted as the correct answer.
+Attempting `Corncon` as the flag, was accepted as the correct answer.
 
 
 ## 10th level Ranger
