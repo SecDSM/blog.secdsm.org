@@ -326,7 +326,7 @@ keyed encryption method.  A good first guess is something like
 In this case, CyberChef can also be used to "roll though" the different shift options and some clear text is found at 
 ROT23
 
-![labhomeworkdashboard.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/labhomeworkdashboard_solved.png)
+![labhomeworkdashboard.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/labhomeworkdashboard_solve.png)
 ```
 Mouthbreather
 ```
