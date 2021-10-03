@@ -212,8 +212,8 @@ hit, this represents a single letter of the word.  Each word is double space sep
 
 |letter|instruction|
 |------|-----------|
-|U|Up|  
-|L|Left|  
+|U|Up|
+|L|Left|
 |D|Down|
 |R|Right|
 
@@ -263,13 +263,95 @@ the answer is konami.
 Submitting the flag of `konami` indicated a correct answer.
 
 ## Lab Homework
+### Clue
 ```
 One of the sensors on the Hawkins National Laboratory’s public facing dashboard is displaying some weird unreadable messages. Can you take a look?
 
 Dashboard: 54.80.132.176
 ```
 ### Solution
-TODO
+In visiting the IP Address via the web browser we're presented with a dynamically updating dashboard.
+
+![labhomeworkdashboard.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/labhomeworkdashboard.png)
+
+Noticed the "Evil Sensor" with some gibberish displayed, but before tackling that, went to gather context for any clues. 
+
+Upon looking at the [HTML](https://github.com/SecDSM/secdsm.github.io/blob/main/assets/2021-09-18-corncon-ctf-writeup/LabHomework.md), it was clear that the page was using a javascript library called 
+[Eclipse Paho JavaScript client](https://github.com/eclipse/paho.mqtt.javascript) to connect to and receive messages 
+from a [MQTT](https://mqtt.org/) server.  The javascript would receive the messages, inspect the messages for which 
+sensor it was for and then update the sensor's text on the page. 
+
+In order for this to function, the receiver actually "subscribes" to which "topics", and then declare which function to 
+run when new messages were received. 
+```javascript
+    // once we conenct, subscribe to the "sensor" 
+    function onConnect(){
+        console.log("Connected");
+        mqtt.subscribe("sensor/#");
+    }
+```
+
+Upon seeing this, the first attempt to find the solution was to subscribe to all topics.  Quickly downloading the HTML 
+and correctly "relative" references to the absolute paths which included the remote ip address of the server, the HTML 
+page could be rendered and modified locally.  This allows for a quick development environment where the code could be 
+manipulated without running a webserver or any other software beyond a web browser.   
+
+After quick DuckDuckGo, and a primer on [MQTT topic levels](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) 
+subscribing to all the topics was a quick change.
+```javascript
+    // once we conenct, subscribe to the "sensor" 
+    function onConnect(){
+        console.log("Connected");
+        mqtt.subscribe("#");
+    }
+```
+
+However, nothing new was presented.  After learning a bit about MQTT and gaining all the context of how the dashboard 
+was working, attention was focused back on the text being displayed on the "Evil Sensor"
+
+`Prxwkeuhdwkhu`
+
+One very useful item for determining if a key based encryption is used, or a more simple substitution/rotation cihper is 
+to examine the [entropy](https://en.wikipedia.org/wiki/Entropy) of the string.  Given this string is 13 characters long, and we suspect the flag would be in the 
+English letters.  Thankfully, [CyberChef](https://gchq.github.io/CyberChef/#recipe=Entropy('Shannon%20scale')&input=UHJ4d2tldWhkd2todQ) 
+has a recipe for this, and we can quickly get this.   
+
+Entropy pretty much measures out "random" something is on a scale of 0 (no randomness) to 8 (perfectly random). 
+Encryption creates randomness, substitution/simple rotations don't change the "randomness" of a string.  
+
+CyberChef shows the Shannon Entropy for this input at 3.0, petty darn low. This leads the direction of not being a 
+keyed encryption method.  A good first guess is something like 
+[Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher) and it's friend ROT13.  
+
+In this case, CyberChef can also be used to "roll though" the different shift options and some clear text is found at 
+ROT23
+
+![labhomeworkdashboard.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/labhomeworkdashboard_solved.png)
+```
+Mouthbreather
+```
+
+Coming back to Entropy for just a bit.  It's an interesting concept with a boatload of uses within information 
+security. I went back with our answer and ran it through a few different methods just to see what the Shannon Entropy
+would be for them. 
+
+|Method|Entropy|
+|------|-------|
+|[Plain Text](https://gchq.github.io/CyberChef/#recipe=Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|3.085|
+|[ROT23](https://gchq.github.io/CyberChef/#recipe=ROT13(true,true,false,23)Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|3.085|
+|[Single byte XOR](https://gchq.github.io/CyberChef/#recipe=XOR(%7B'option':'Hex','string':'0a'%7D,'Standard',false)Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|3.085|
+|[Vigenère](https://gchq.github.io/CyberChef/#recipe=Vigen%C3%A8re_Encode('corncon')Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|3.335|
+|[Multiple bye XOR](https://gchq.github.io/CyberChef/#recipe=XOR(%7B'option':'Hex','string':'9285810f81970eeeb109010d47a05ea5'%7D,'Standard',false)Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|3.700|
+|[AES-ECB](https://gchq.github.io/CyberChef/#recipe=AES_Encrypt(%7B'option':'UTF8','string':'0123456789abcdef'%7D,%7B'option':'UTF8','string':'0123456789abcdef654654'%7D,'ECB','Raw','Raw',%7B'option':'Hex','string':''%7D)Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|4.0|
+|[AES-GCM](https://gchq.github.io/CyberChef/#recipe=AES_Encrypt(%7B'option':'UTF8','string':'0123456789abcdef'%7D,%7B'option':'UTF8','string':'0123456789abcdef654654'%7D,'GCM','Raw','Raw',%7B'option':'Hex','string':''%7D)Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|5.11|
+|[RSA 1024bit Key](https://gchq.github.io/CyberChef/#recipe=RSA_Encrypt('-----BEGIN%20PUBLIC%20KEY-----%5CnMIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGheVAQz7fjaPxMk3%2BlNQN5KM4Yy%5Cn5d3DeOUGfJKYuGgAquBnAZ/y/2E%2BBwbE8eq1zbsHQ%2B2s60EzB7AHgABGKElitx4i%5CnfUCD8yjs9yKs1cEf10TV4S/viSR9Hg3PpjNOSWxirVvvBgtY2/s%2BT82IjxH3mxwU%5Cn%2BTHEQY4YbDTGiTTLAgMBAAE%3D%5Cn-----END%20PUBLIC%20KEY-----','RSA-OAEP','SHA-1')Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|6.560|
+|[RSA 2048bit Key](https://gchq.github.io/CyberChef/#recipe=RSA_Encrypt('-----BEGIN%20PUBLIC%20KEY-----%5CnMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArAElXoHl7xlhEAPBhSHd%5CnzD26dUrV/9siPjQMOwtDFf0N961nQduPX7m0p/QP%2B7kDouEKABd9c5/T1Xz3Ma6h%5CnKZohNf13dbyrMe73iFRVwNjg5DvunIhe2qH3o2jInW3rtSXBU08ki5IYLlmrgzvT%5CnNTs1SpK9WUKsLw%2BJ9DFCJHQO7EyAPbBZkMsA3seNGzmuycdbURC2%2BBkDOfK0tYzF%5CnYc9HHOgtbEKGYCDZ%2BG0x7SmBearZf3Loto6/7W1GIyAxWjPAU6K96TK/8XHUMWzQ%5Cn4dwI79knUT4JJyx9R9/TtRbuEdQo377vDzWQ9i%2BWjg2ElVhJSAxgs2jIMBguBF8Y%5Cn8wIDAQAB%5Cn-----END%20PUBLIC%20KEY-----','RSA-OAEP','SHA-1')Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|7.072|
+|[RSA 4096bit Key](https://gchq.github.io/CyberChef/#recipe=RSA_Encrypt('-----BEGIN%20PUBLIC%20KEY-----%5CnMIICITANBgkqhkiG9w0BAQEFAAOCAg4AMIICCQKCAgBoPm1sSsX9Eia5D7ly0BBr%5CnLUwLCMs2s5uetlPZjHcxxTQgaG1fij6QW5QruWKHQJukOQIsIaKAazaANb5m7lX8%5CnBqvFWwhC1DMnQ81feFFw8IIuX2aGaZnku6Q5z2dv6jO2e4Dtx4DLPHA/8L8sZwI0%5CnScuYH7ddfgI38AqIkt4e5FZqnVIK%2Bei3hLxaUS%2Bp7RbPKLivE9oBSsv32z7j3RFH%5Cn5LS986xRs5Swro0DDHxxUi4o74HFI7ZjFrc%2BgTfVabL/Swsdzsk/FD3MKAk3Iub8%5CnwHdKuD8nBNE2hd9FxRTbpM6Y0/a9mPvPY9Fclk2gXlm60SDYRkoFvAu0qB0VpWGB%5CnypvgHOiDz6okauwYPrpfpZyoqL%2Bfz9td8mha858TXsaUAdhkGn2Wc%2BD0n0SxgXNj%5CnL6rcs3YgxWj9qkdKOp6qtyPtTG9TCZf8c05WbAVJXCH0aKjbwjTRJn5B%2BncTMuZw%5Cnw/DxQv6sYNjHKAGIFHCoCijM37e8d26moToUMVClRV%2BLlNhvFCF058Aih5T%2BWx0T%5Cn1ONPOnLmQyvH1QpAT6dGSKNifDvw42JP70fuftclda7znLt8B4oinFoJdGsmH0vJ%5CnZidgbCrKJ/IjXIZvVWwM8S3UEwKHsJ8POKSsiss29kmxm3F1PL9OCDyqlJQUrOZx%5Cnqj76OcxRza4NT3dYoHlY%2BwIDAQAB%5Cn-----END%20PUBLIC%20KEY-----','RSA-OAEP','SHA-1')Entropy('Shannon%20scale')&input=TW91dGhicmVhdGhlcg)|7.59|
+
+
+Overall, a very fun challenge with tons of learning opportunity.  Looking forward to seeing this challenge being used 
+next CornCon and working multiple challenges into the Dashboard concept! 
+
 
 ## Typo Squatting
 ### Clue

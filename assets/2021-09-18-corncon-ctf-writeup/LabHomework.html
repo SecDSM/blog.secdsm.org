@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags -->
+    		<meta charset="utf-8">
+    		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+			
+		
+
+<style>
+div.ex1 {
+  background-color: rgb(60, 60, 60) ;
+  border-bottom: 3px solid white;
+/*  background-image: url('/static/sensor/power.jpg');
+  background-size: 2000px 200px;
+  background-repeat: no-repeat;
+ */
+}
+div.hr_text{
+	color : white;
+}
+.chart {
+  
+}
+</style>
+
+<div class=" ex1  hr_text shadow p-5 text-center ">
+	<h1 class="mb-3">Hawkins National Laboratory</h1>
+    <h4 class="mb-3"> U.S. Department of Energy</h4>
+    <!--<a class="btn btn-primary" href="" role="button">Call to action</a>-->
+</div>
+
+
+
+		
+<style>
+div.ex1 {
+  background-color: rgb(60, 60, 60) ;
+  border-bottom: 3px solid white;
+/*  background-image: url('/static/sensor/power.jpg');
+  background-size: 2000px 200px;
+  background-repeat: no-repeat;
+ */
+}
+div.hr_text{
+	color : white;
+}
+.chart {
+  
+}
+</style>
+
+
+		
+			<title> Sensor Graph </title>
+		
+		
+	
+	</head>
+	<body style="background-image: url('/static/sensor/chemlab1.png'); background-size: 1800px 1000px">
+		<div class='container'>
+			
+	<script src="/static/sensor/paho-mqtt.js" type="text/javascript"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--
+	
+		<h1>Sensor One </h1>
+		<p>1111111</p>
+	
+		<h1>Sensor Two </h1>
+		<p>2222222</p>
+	
+	-->
+	
+
+	<div>
+		<div class = "">
+			<div class=" mx-5 my-5 row">
+				<div class = "shadow mb-4 card">
+					 <div class="card-body chart">
+		  				<canvas id="myChart"  style="width: 65%; height: 65%"></canvas>
+		  			</div>
+		  		</div>
+		  	</div>
+	  	</div>
+	</div>	
+	
+	
+	
+	<script>
+		var dataObj = {
+    	type: 'line',
+    	data: {
+        	labels: [0,5,10,15,20,25,30,35,40,45,50,55,60],
+        	datasets: [{
+            	label: 'Temperature',
+            	data: [24,18,12, 19, 3, 5, 2, 3,10,16,18,62,52],
+            	backgroundColor: [
+                	'rgb(0, 0, 255)'
+            	],
+            	borderColor: [
+                	'rgb(0, 0, 255)',
+            	],
+          	  borderWidth: 2
+        	}]
+	    },
+    	options: {
+    	    scales: {
+
+    	        yAxes: [{
+					display: true,
+    	            ticks: {
+    	            	beginAtZero: true,
+    	            	min:0,
+    	            	max:125,
+    	            	stepSize: .05,
+    	            }
+    	        }],
+    	        xAxes: [{
+	    	        display: true,
+    	        	type: 'time',
+    	        	ticks: {
+    	            	min:0,
+    	            	max:125,
+    	            	stepSize: .05,
+    	            }
+
+    	        }]
+    	    }
+    	}
+	};	
+    	var ctx = document.getElementById('myChart').getContext("2d");
+    	// var myChart = new Chart(ctx, dataObj);
+    	ctx.height = '5px';
+    	ctx.width = '50px';
+    	window.myLine = new Chart(ctx, dataObj);
+	</script>
+	<script type="text/javascript" language="javascript">
+		var mqtt;
+		var reconnectTimeout = 2000;
+		var host = "54.80.132.176";
+		var port = 9001;
+		
+		function onConnect(){
+			console.log("Connected");
+			mqtt.subscribe("sensor/#");
+		}
+		function onFailure(message){
+			console.log("Connection Attempt to Host " + host + ":" + port + " Failed.");
+			setTimeout(MQTTConnect, reconnectTimeout);
+		}
+		function isJson(msg){
+			try{
+				JSON.parse(msg)
+			}
+			catch (e){
+				return false
+			}
+			return true
+		}
+		function onMessageArrived(msg){
+			//console.log("onMessageArerive");
+			//console.log(isJson(msg.payloadString));
+			if(!isJson(msg.payloadString)){
+				#console.log("here");
+				
+			}
+			else{
+				//console.log(ID());
+				out_text = JSON.parse(msg.payloadString);
+				//console.log("onMessageArerive");
+				out_msg = "Message received " + msg.payloadString + "\n";
+				out_msg = out_msg + "Message received. Topic " + msg.destinationName;
+				out_msg = out_msg + "\n" + out_text.data
+				console.log(out_msg);
+				console.log(out_text.data);
+				//document.querySelector('#mqtt').innerText = out_msg;
+				if (out_text.title == "Temp"){
+					//console.log("Yes");
+					document.querySelector('#temp').innerText = out_text.data;
+				
+					dataObject = dataObj['data']['datasets'][0]['data'];
+					dataObject.shift();
+					dataObject.push(out_text.data);
+			
+				dataObj['data']['datasets'][0]['data'] = dataObject;
+				window.myLine.update();
+				}
+				if (out_text.title == "Evil MSG"){
+					//console.log("Yes");
+					document.querySelector('#evil_msg').innerText = out_text.data;
+				}	
+				if (out_text.title == "Heart Rate"){
+					//console.log("Yes");
+					document.querySelector('#heart_rate').innerText = out_text.data;
+				}
+			}
+
+		}
+		function ID () {
+			  // Math.random should be unique because of its seeding algorithm.
+			  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+			  // after the decimal.
+			  return '_' + Math.random().toString(36).substr(2, 9);
+		}	
+		function MQTTConnect(){
+			console.log("connection to - " + host + ":" + port);
+			mqtt = new Paho.MQTT.Client(host, port, "Client"+ID());
+			var options = {
+				timeout:3,
+				onSuccess: onConnect,
+				onFailure: onFailure,
+			};
+			
+			mqtt.onMessageArrived = onMessageArrived;
+			
+			mqtt.connect(options);
+		}
+		
+	</script>
+
+	<script>MQTTConnect();</script>
+	
+	
+	<div>		
+		<p id="mqtt"></p>		
+	</div>
+
+
+		</div>
+		<div class='gauges'>
+			
+
+<div class="">    
+<div class=" mx-5 row ">
+  <div class="col-sm-6">
+
+    <div class="shadow mb-3 card">
+      <div class="card-body">
+        <h5 class="card-title">Temperature Sensor</h5>
+        <p class="card-text">
+        	<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-thermometer-half" viewBox="0 0 16 16">
+  <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415z"/>
+  <path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
+			<i id="temp" class="bi bi-thermometer-half"></i>
+			
+        	</p>
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      </div>
+    </div>
+ 
+  </div>
+  <div class="col-sm-6">
+    <div class="shadow mt-1 card">
+      <div class="card-body">
+        <h5 class="card-title"> Heart Rate</h5>
+        
+        <p class="card-text">
+        	<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+</svg>
+			<i id="heart_rate" class="bi bi-heart-fill"></i>			
+		</p>
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class=" mx-5 row ">
+  <div class="col-sm-6">
+
+    <div class="shadow card">
+      <div class="card-body">
+        <h5 class="card-title">Evil Sensor</h5>
+        <p class="card-text">
+        	<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-bug-fill" viewBox="0 0 16 16">
+  <path d="M4.978.855a.5.5 0 1 0-.956.29l.41 1.352A4.985 4.985 0 0 0 3 6h10a4.985 4.985 0 0 0-1.432-3.503l.41-1.352a.5.5 0 1 0-.956-.29l-.291.956A4.978 4.978 0 0 0 8 1a4.979 4.979 0 0 0-2.731.811l-.29-.956z"/>
+  <path d="M13 6v1H8.5v8.975A5 5 0 0 0 13 11h.5a.5.5 0 0 1 .5.5v.5a.5.5 0 1 0 1 0v-.5a1.5 1.5 0 0 0-1.5-1.5H13V9h1.5a.5.5 0 0 0 0-1H13V7h.5A1.5 1.5 0 0 0 15 5.5V5a.5.5 0 0 0-1 0v.5a.5.5 0 0 1-.5.5H13zm-5.5 9.975V7H3V6h-.5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 0-1 0v.5A1.5 1.5 0 0 0 2.5 7H3v1H1.5a.5.5 0 0 0 0 1H3v1h-.5A1.5 1.5 0 0 0 1 11.5v.5a.5.5 0 1 0 1 0v-.5a.5.5 0 0 1 .5-.5H3a5 5 0 0 0 4.5 4.975z"/>
+</svg>		
+			<i id="evil_msg" class="bi bi-bug-fill"> </i>
+        </p>
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      </div>
+    </div>
+ 
+  </div>
+  <div class="col-sm-6">
+    <div class="shadow card">
+      <div class="card-body">
+        <h5 class="card-title">TBD</h5>
+        <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>-->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+</svg>
+
+
+
+		</div>
+	
+	
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
+	
+
+	</body>
+
+<footer class=" mt-5 bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+      <!-- Github -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="https://strangerthings.fandom.com/wiki/Hawkins_National_Laboratory/">HNL</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+</html>
