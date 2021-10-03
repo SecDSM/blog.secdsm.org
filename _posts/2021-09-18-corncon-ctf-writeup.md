@@ -274,7 +274,8 @@ In visiting the IP Address via the web browser we're presented with a dynamicall
 
 ![labhomeworkdashboard.png]({{ site.url }}{{ site.baseurl }}/assets/2021-09-18-corncon-ctf-writeup/labhomeworkdashboard.png)
 
-Noticed the "Evil Sensor" with some gibberish displayed, but before tackling that, went to gather context for any clues. 
+Noticed the "Evil Sensor" with some gibberish displayed, but before tackling that, a review of the HTML/Javascript was 
+conducted in an attempt gather context for any other clues.  
 
 Upon looking at the [HTML](https://github.com/SecDSM/secdsm.github.io/blob/main/assets/2021-09-18-corncon-ctf-writeup/LabHomework.html), it was clear that the page was using a javascript library called 
 [Eclipse Paho JavaScript client](https://github.com/eclipse/paho.mqtt.javascript) to connect to and receive messages 
