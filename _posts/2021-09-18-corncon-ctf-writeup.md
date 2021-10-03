@@ -284,11 +284,11 @@ sensor it was for and then update the sensor's text on the page.
 In order for this to function, the receiver actually "subscribes" to which "topics", and then declare which function to 
 run when new messages were received. 
 ```javascript
-    // once we conenct, subscribe to the "sensor" 
-    function onConnect(){
-        console.log("Connected");
-        mqtt.subscribe("sensor/#");
-    }
+// once we conenct, subscribe to the "sensor" 
+function onConnect(){
+    console.log("Connected");
+    mqtt.subscribe("sensor/#");
+}
 ```
 
 Upon seeing this, the first attempt to find the solution was to subscribe to all topics.  Quickly downloading the HTML 
@@ -299,11 +299,11 @@ manipulated without running a webserver or any other software beyond a web brows
 After quick DuckDuckGo, and a primer on [MQTT topic levels](https://www.hivemq.com/blog/mqtt-essentials-part-5-mqtt-topics-best-practices/) 
 subscribing to all the topics was a quick change.
 ```javascript
-    // once we conenct, subscribe to the "sensor" 
-    function onConnect(){
-        console.log("Connected");
-        mqtt.subscribe("#");
-    }
+// once we conenct, subscribe to the "sensor" 
+function onConnect(){
+    console.log("Connected");
+    mqtt.subscribe("#");
+}
 ```
 
 However, nothing new was presented.  After learning a bit about MQTT and gaining all the context of how the dashboard 
